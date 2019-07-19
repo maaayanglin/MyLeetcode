@@ -12,4 +12,4 @@ class Solution:
             else:
                 nums[count] = ele
                 count += 1
-        return count+1
+        return count
