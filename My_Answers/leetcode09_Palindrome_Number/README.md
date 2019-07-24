@@ -10,9 +10,8 @@ leetcode题目009: 回文数
 
 按照第二个想法，为了避免数字反转可能导致的溢出问题，为什么不考虑只反转 \text{int}int 数字的一半？毕竟，如果该数字是回文，其后半部分反转后应该与原始数字的前半部分相同。
 
+时间复杂度：O(log 10​	(n))，对于每次迭代，我们会将输入除以10，因此时间复杂度为O(log 10​	(n))。
+空间复杂度：O(1)。
 
 链接：https://leetcode-cn.com/problems/two-sum/solution/hui-wen-shu-by-leetcode/
 来源：力扣（LeetCode）
-
-时间复杂度：O(log 10​	(n))，对于每次迭代，我们会将输入除以10，因此时间复杂度为O(log 10​	(n))。
-空间复杂度：O(1)。
