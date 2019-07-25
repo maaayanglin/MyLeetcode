@@ -22,7 +22,7 @@ class Solution:
         ridx = n - 1
         while ridx > 0 and nums[ridx-1] >= nums[ridx]:#从右开始遍历试图寻找第一个破坏降序(左往右看)的数，下标为idx-1，例如1243中的2为目标数。
             ridx -= 1
-        if ridx == 0:  # ridx==0代表整个数字串为逆序排列，不存在下一个排列数，返回其反转数 
+        if ridx == 0:  # ridx==0代表整个数字串为逆序排列，不存在下一个排列数，返回其翻转数 
             nums.reverse()
             return 
         else:
