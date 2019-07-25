@@ -7,11 +7,13 @@
 # 可以分为两种情况：1、数字tmp的值大于降序数字串nums_sorted的最高位数字的值，则新构成的数字串仍然为降序数字串，若要找该数字串的下一个排列数则需要再往高位找
 #                 2、数字tmp的值小于降序数字串nums_sorted的最高位数字的值，则新构成的数字串的下一个排列数与更高位数字无关，可以继续往下讨论：
 # 此时我们截取从tmp位开始的右边的数字串命名为nums_main，下一个排列数必定满足：
-#                 1、下一个排列数的最左侧即最高位数字值必定大于数字tmp，
-#                 2、下一个排列数的最高位的右边的数字串排列是升序排列的
+#                 条件1、下一个排列数的最左侧即最高位数字值必定大于数字tmp，
+#                 条件2、下一个排列数的最高位的右边的数字串排列是升序排列的
 # 同时我们也知道当截断后nums_main的最高位的右边的数字串排列是降序的，基于此以及上述第一点我们需要从nums_main的右边开始遍历，找到第一个大于tmp的数字target
 # 然后将target与tmp交换即能满足第一条规定。当然，交换后除最高位外的数字串仍然是降序的。（小于tmp的也小于target，大于target的也大于tmp，两者交换不影响有序性）
 # 最后将nms_main除最高位外的数字串进行翻转，从降序变成升序，即满足上述条件二。此时的整个排列数即为下一个排列数。
+# 时间复杂度： 不存在嵌套遍历，因此时间复杂度为 O(n)
+# 空间复杂度： 占用常数空间，因此空间复杂度为 O(1)
 
 class Solution:
     def nextPermutation(self, nums: List[int]) -> None:
@@ -28,14 +30,14 @@ class Solution:
         else:
             first_idx = ridx - 1 
             rridx = n - 1
-            while nums[first_idx] >= nums[rridx]:
+            while nums[first_idx] >= nums[rridx]:  #从右开始遍历找到满足条件一的数字
                 rridx -= 1
             second_idx = rridx
             nums[first_idx], nums[second_idx] = nums[second_idx], nums[first_idx]
             
             lidx = ridx
             ridx = n - 1
-            while lidx <= ridx:
+            while lidx <= ridx:  # 进行翻转
                 nums[lidx], nums[ridx] = nums[ridx], nums[lidx]
                 ridx -= 1
                 lidx += 1
